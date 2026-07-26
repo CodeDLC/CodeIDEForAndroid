@@ -47,6 +47,10 @@ class GradleRunner(private val context: Context) {
         _buildOutputFlow.emit(startLine)
 
         return@withContext try {
+<<<<<<< HEAD
+=======
+            // Attempt executing via local shell process
+>>>>>>> 48993884dd37d77b864afc1bcdfe2c3d329e0952
             val pb = ProcessBuilder("sh", "-c", "cd '$projectDir' && gradle $taskName 2>&1")
             pb.directory(rootDir)
             val process = pb.start()
@@ -71,11 +75,21 @@ class GradleRunner(private val context: Context) {
             _buildOutputFlow.emit(endLine)
             success
         } catch (e: Exception) {
+<<<<<<< HEAD
+=======
+            // Simulated / Termux Intent fallback output when shell is sandboxed
+>>>>>>> 48993884dd37d77b864afc1bcdfe2c3d329e0952
             val infoLine = BuildOutputLine("Gradle execution initiated via Termux / Shell: $taskName")
             onOutput(infoLine)
             _buildOutputFlow.emit(infoLine)
 
+<<<<<<< HEAD
             simulateGradleOutput(projectDir, taskName, onOutput)
+=======
+            // Parse sample build outputs for demonstration & testing
+            val mockSuccess = simulateGradleOutput(projectDir, taskName, onOutput)
+            mockSuccess
+>>>>>>> 48993884dd37d77b864afc1bcdfe2c3d329e0952
         }
     }
 
@@ -83,6 +97,10 @@ class GradleRunner(private val context: Context) {
         val isErr = line.contains("error:", ignoreCase = true) || line.contains("FAILED") || line.contains("FAILURE:")
         val isWarn = line.contains("warning:", ignoreCase = true) || line.contains("WARN")
 
+<<<<<<< HEAD
+=======
+        // Match Java error line: /path/File.java:42: error: ...
+>>>>>>> 48993884dd37d77b864afc1bcdfe2c3d329e0952
         val javaMatch = Regex("""(.+?\.(?:java|kt)):(\d+)(?::(\d+))?:\s*(error|warning):\s*(.+)""").find(line)
         if (javaMatch != null) {
             val fileRelative = javaMatch.groupValues[1]
