@@ -1,0 +1,6 @@
+{
+  "name": "Idea Mobile",
+  "description": "Full-featured IntelliJ IDEA style IDE for Java/Kotlin Gradle & Fabric Minecraft mod development",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
